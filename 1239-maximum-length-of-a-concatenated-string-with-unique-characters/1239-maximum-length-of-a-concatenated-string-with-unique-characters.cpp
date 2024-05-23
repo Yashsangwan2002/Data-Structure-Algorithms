@@ -2,8 +2,10 @@ class Solution {
 public:
     unordered_map<char,int> m;
     bool check(string s){
+        unordered_map<char,int> temp;
         for(auto it:s){
-            if(m.find(it)!=m.end())return false;
+            if(m.find(it)!=m.end()||temp.find(it)!=temp.end())return false;
+            temp[it]++;
         };
         return true;
     };
@@ -13,7 +15,7 @@ public:
     void remove(string s){
         for(auto it:s){
             m[it]--;
-            if(m[it]==0)m.erase(it);
+            if(m[it]<=0)m.erase(it);
         }
     }
     int iterate(int ind,vector<string>& arr){
